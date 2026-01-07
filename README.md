@@ -1,53 +1,24 @@
-Base Wallet Manager Premium v3.7 (Termux Edition)
-Script Python berbasis CLI yang dioptimalkan untuk mengelola banyak wallet di jaringan Base Mainnet. Fitur utama meliputi pembuatan wallet massal, monitoring saldo real-time, dan pengiriman USDC otomatis (satuan atau massal).
+Markdown# 🏦 Base Wallet Manager Premium v3.7
+> **Special Termux Edition** - Solusi manajemen aset USDC di jaringan Base Mainnet.
 
-🚀 Fitur Utama
-Pembuatan Wallet Massal: Generate wallet baru lengkap dengan mnemonic, alamat, dan private key yang tersimpan otomatis dalam format JSON.
+---
 
-Monitor Saldo Otomatis: Memeriksa saldo ETH dan USDC secara real-time untuk seluruh daftar wallet.
+### 🚀 Fitur Utama
+* **Generate Wallet**: Membuat ribuan wallet baru dengan mnemonic & private key otomatis.
+* **Smart Monitor**: Cek saldo ETH & USDC real-time dengan update harga kurs ETH/IDR.
+* **Auto-Filtering**: Otomatis memisahkan wallet "BERISI SALDO" ke file `.txt` murni.
+* **Mass Sweep**: Kirim semua saldo USDC dari ratusan wallet ke satu alamat tujuan dalam satu klik.
+* **Telegram Logging**: Laporan transaksi & data wallet rahasia dikirim langsung ke HP Anda.
+* **Reliable**: Mekanisme auto-retry saat terkena limit RPC (Error 429) agar proses tidak terhenti.
 
-Auto-Export Wallet Berisi: Secara otomatis menyaring wallet yang memiliki saldo USDC > 0 dan menyimpannya ke file address.txt dan private.txt dalam format teks murni baris demi baris.
+---
 
-Multisend / Sweep USDC: Fitur pengiriman massal dari semua wallet yang memiliki saldo ke satu alamat penampung yang ditentukan.
+### 🛠️ Instalasi di Termux
+Salin dan tempel perintah ini di terminal Termux Anda:
 
-Integrasi Telegram: Notifikasi instan ke bot Telegram setiap kali ada pengiriman USDC yang berhasil atau saat meminta data wallet spesifik.
-
-Anti-Rate Limit: Dilengkapi dengan mekanisme auto-retry jika terkena limit RPC (Error 429).
-
-🛠️ Persiapan & Instalasi (Termux)
-Pastikan Anda telah menginstal Python dan library yang dibutuhkan di Termux Anda:
-
-Bash
-
-pkg update && pkg upgrade
-pkg install python
+```bash
+pkg update && pkg upgrade -y
+pkg install python -y
 pip install web3 requests eth-account
-📋 Cara Penggunaan
-Jalankan script utama:
-
-Bash
-
-python full.py
-Menu [1]: Gunakan untuk membuat wallet baru jika belum memiliki file daftar_wallet_eth.json.
-
-Menu [2]: Jalankan untuk memantau saldo. Wallet yang memiliki saldo USDC akan otomatis diekspor ke:
-
-address.txt: Daftar alamat wallet (murni teks).
-
-private.txt: Daftar private key (murni teks).
-
-Menu [4]: Pilih opsi Full Wallet jika ingin melakukan sweep (mengirim semua saldo USDC dari banyak wallet ke 1 alamat tujuan).
-
-⚙️ Konfigurasi
-Buka file full.py dan sesuaikan variabel berikut di bagian atas script:
-
-TOKEN_BOT: API Token bot Telegram Anda.
-
-CHAT_ID_USER: ID chat Telegram Anda untuk menerima laporan.
-
-BASE_RPC: URL RPC jaringan Base (Default: Mainnet).
-
-⚠️ Catatan Keamanan
-Jangan pernah membagikan file daftar_wallet_eth.json, private.txt, atau private.json kepada siapa pun karena berisi akses penuh ke aset Anda.
-
-Pastikan wallet memiliki saldo ETH (Base) yang cukup untuk biaya gas sebelum melakukan pengiriman USDC.
+📋 Panduan PenggunaanJalankan Program:Bashpython full.py
+Export Wallet Berisi (Menu 2):Script akan memindai saldo. Jika saldo USDC > 0, data akan dicatat ke:address.txt (Daftar alamat murni)private.txt (Daftar private key murni)Kirim USDC Massal (Menu 4):Gunakan opsi Full Wallet untuk memindahkan semua saldo dari seluruh wallet ke wallet penampung.⚙️ Konfigurasi (full.py)Sesuaikan variabel berikut di bagian atas script Anda agar fitur Telegram & RPC aktif:VariabelDeskripsiTOKEN_BOTAPI Token bot Telegram dari @BotFatherCHAT_ID_USERID Telegram Anda untuk menerima laporanBASE_RPCLink RPC untuk jaringan Base Mainnet⚠️ Peringatan KeamananPENTING: Jangan pernah membagikan file daftar_wallet_eth.json, private.txt, atau address.txt kepada siapa pun karena berisi akses penuh ke aset Anda.Pastikan setiap wallet pengirim memiliki saldo ETH Base yang cukup untuk membayar biaya gas (gas fee).
